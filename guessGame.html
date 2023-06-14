@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: grey;
+    }
+    
+    #guessid{
+        width: 142px;
+        height: 60px;
+        font-size: 30px;
+        text-align: center;
+        border-radius: 10px;
+
+    }
+
+    button{
+        width: 81px;
+        height: 43px;
+        border-radius: 10px;
+        border-color: white;
+        
+        
+    }
+
+    .playAgain{
+        width: 136px;
+        height: 51px;
+        position: relative;
+        top: 49px;
+        left: 67px;
+    }
+
+    .box{
+        width: 72px;
+        height: 51px;
+        background-color: white;
+        text-align: center;
+        font-size: xx-large;
+        padding-top: 8px;
+        position: relative;
+        left: 709px;
+        top: 29px;
+    }
+
+
+
+    .left{
+        position: absolute;
+        top: 420px;
+        left: 293px;
+        
+    
+
+    }
+
+    .right{
+        color: white;
+        position: absolute;
+        top: 387px;
+        left: 998px;
+        font-size: x-large;
+
+    }
+
+    hr{
+        position: relative;
+        top: 67px;
+    }
+</style>
+<body>
+    <!--
+    <input type="number" id="uservalue">
+    <button id="btn">Submit</button>
+    <h3 id="result"></h3>
+    -->
+
+
+
+    <div class="play">
+        <button class="playAgain">Play Again</button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h1 style="text-align: center;">Guess My Number</h1>
+    <hr>
+
+    <div class="box"><span class="questionMark">?</span> </div>
+
+    <div class="left">
+        <input type="number" id="guessid">
+        <br>
+        <br>
+        <button class="check" onclick="check()">Check!</button>
+    </div>
+
+    <div class="right">
+        <p class="messege"> Start Guesssing....</p>
+        <p class="chances">💯 Chances: <span class="score">100</span></p>
+        <p class="highScore"> 🏆High Socre: <span class="highestscore">0</span></p>
+        <!--<p class="occurance">No of occurance:<span class="occur">0</span></p> -->
+    </div>
+</body>
+</html>
+
+<script>
+
+    let initialValue=100;
+    let Highscore=null;
+
+    let random = generateRandomFunction(100);
+    
+
+    function generateRandomFunction(max){
+        return Math.floor(Math.random(max)*100 ) +1;
+        
+    }
+
+
+    function check(){
+        let currentNumber = document.getElementById("guessid").value;
+
+    if(initialValue!==0){
+
+        if(currentNumber > random){
+            document.querySelector(".messege").textContent="Your Guess Is High";
+            initialValue--;
+            document.querySelector(".score").textContent=initialValue;
+            document.body.style.background="grey";
+
+        }
+        else if(currentNumber < random){
+            document.querySelector(".messege").textContent="Your Guess Is Low";
+            initialValue--;
+            document.querySelector(".score").textContent=initialValue;
+            document.body.style.background="grey";
+        }
+        else{
+            
+            document.querySelector(".messege").textContent="Winner Winner Chicken Dinner 🍗🍗";
+            initialValue--;
+            document.querySelector(".score").textContent=initialValue;
+
+            document.body.style.background="green";
+            document.querySelector(".check").style.visability="hidden";
+
+            hs = initialValue;
+            document.querySelector(".highestscore").textContent=hs;
+
+            document.querySelector(".questionMark").textContent=hs;
+
+            //let occ=initialValue-score;
+            //document.querySelector(".occur").textContent=occ;
+            //random-chances
+
+        }
+    }
+    else{
+        document.querySelector(".messege").textContent="Game Over ";
+
+    }
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    let x = parseInt(Math.random()*50);
+    console.log(x);
+    document.querySelector("#btn").addEventListener("click",checkTheValue);
+    
+    function checkTheValue(){
+        let val =document.querySelector("#uservalue").value;
+        console.log(val);
+        if(val>x){
+            document.querySelector("#result").innerHTML="your guess is too high";
+
+        }
+        else if(val<x){
+            document.querySelector("#result").innerHTML="your guess is too low";
+        }
+        else{
+            document.querySelector("#result").innerHTML="your guess is correct";
+        }
+    }
+ */
+
+</script>
